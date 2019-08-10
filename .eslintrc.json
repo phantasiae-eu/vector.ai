@@ -4,6 +4,9 @@
         "browser": true,
         "es6": true
     },
+    "extends": [
+      "plugin:@typescript-eslint/recommended", "prettier/@typescript-eslint", "plugin:prettier/recommended", "plugin:react/recommended", "prettier"
+    ],
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
