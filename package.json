@@ -11,6 +11,7 @@
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-grid-layout": "^0.16.6",
+    "react-pure-loaders": "^2.0.3",
     "react-scripts": "3.1.0",
     "typescript": "3.5.3"
   },
