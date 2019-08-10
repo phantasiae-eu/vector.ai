@@ -2,8 +2,6 @@ import React, { ReactElement, useEffect, useState } from 'react'
 import catsData from '../data/cats'
 import axios from 'axios'
 import { key } from '../secretConfig'
-import './styles/react-grid-layout.css'
-import './styles/react-resizable.css'
 import GridLayout from 'react-grid-layout'
 import { Layout } from './cats.model'
 import { Cat } from '../data/cats.model'
@@ -80,6 +78,7 @@ const Cats: React.FC = (): ReactElement => {
                                     height="100%"
                                     frameBorder="0"
                                     sandbox={'allow-scripts allow-same-origin'}
+                                    title={`frame - ${index}`}
                                 ></iframe>
                             ) : (
                                 <BallBeat color={'#123abc'} loading={true} />
