@@ -1,4 +1,4 @@
-.wrap{
+.cat_wrap{
   background-color: transparent;
   display: flex;
   flex-direction: column;
@@ -7,6 +7,8 @@
   border-width: 1px;
   border-color: grey;
   border-style: solid;
+  width: 100%;
+  height:100%;
 }
 
 .title{
@@ -14,6 +16,7 @@
   position: absolute;
   color: white;
   top: 0;
+  text-indent: 10px;
   background-color: rgba(0, 0, 0, 0.4);
   width: 100%;
 }

@@ -5,8 +5,7 @@ import { key } from '../secretConfig'
 import GridLayout from 'react-grid-layout'
 import { Layout } from './cats.model'
 import { Cat } from '../data/cats.model'
-import { BallBeat } from 'react-pure-loaders'
-import './cats.css'
+import CatBox from '../cat/cat.component'
 
 const Cats: React.FC = (): ReactElement => {
     const [links, setLinks] = useState(catsData.map((): string => ''))
@@ -46,25 +45,8 @@ const Cats: React.FC = (): ReactElement => {
             >
                 {catsData.map(
                     (cat: Cat, index: number): ReactElement => (
-                        <div
-                            onClick={(): void => console.log('mensola')}
-                            className="wrap"
-                            key={index.toString()}
-                        >
-                            <p className="title">{cat.title}</p>
-                            {links[index] ? (
-                                <iframe
-                                    src={links[index]}
-                                    width="100%"
-                                    height="100%"
-                                    frameBorder="0"
-                                    sandbox={'allow-scripts allow-same-origin'}
-                                    title={`frame - ${index}`}
-                                ></iframe>
-                            ) : (
-                                <BallBeat color={'#123abc'} loading={true} />
-                            )}
-                            <div className="overlay"></div>
+                        <div key={index.toString()}>
+                            <CatBox links={links} cat={cat} index={index} />
                         </div>
                     )
                 )}
