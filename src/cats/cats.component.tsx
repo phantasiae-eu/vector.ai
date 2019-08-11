@@ -6,6 +6,7 @@ import GridLayout from 'react-grid-layout'
 import { Layout } from './cats.model'
 import { Cat } from '../data/cats.model'
 import { BallBeat } from 'react-pure-loaders'
+import './cats.css'
 
 const Cats: React.FC = (): ReactElement => {
     const [links, setLinks] = useState(catsData.map((): string => ''))
@@ -47,30 +48,10 @@ const Cats: React.FC = (): ReactElement => {
                     (cat: Cat, index: number): ReactElement => (
                         <div
                             onClick={(): void => console.log('mensola')}
-                            style={{
-                                backgroundColor: 'transparent',
-                                display: 'flex',
-                                flexDirection: 'column',
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                borderWidth: '1px',
-                                borderColor: 'grey',
-                                borderStyle: 'solid',
-                            }}
+                            className="wrap"
                             key={index.toString()}
                         >
-                            <p
-                                style={{
-                                    margin: '0',
-                                    position: 'absolute',
-                                    color: 'white',
-                                    top: '0',
-                                    backgroundColor: 'rgba(0, 0, 0, 0.4)',
-                                    width: '100%',
-                                }}
-                            >
-                                {cat.title}
-                            </p>
+                            <p className="title">{cat.title}</p>
                             {links[index] ? (
                                 <iframe
                                     src={links[index]}
@@ -83,18 +64,7 @@ const Cats: React.FC = (): ReactElement => {
                             ) : (
                                 <BallBeat color={'#123abc'} loading={true} />
                             )}
-                            <div
-                                style={{
-                                    zIndex: 1,
-                                    position: 'absolute',
-                                    left: '50%',
-                                    transform: 'translate(-50%, -50%)',
-                                    width: '187px',
-                                    height: '150px',
-                                    backgroundColor: 'transparent',
-                                    top: '75px',
-                                }}
-                            ></div>
+                            <div className="overlay"></div>
                         </div>
                     )
                 )}

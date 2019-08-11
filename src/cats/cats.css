@@ -1,0 +1,30 @@
+.wrap{
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-width: 1px;
+  border-color: grey;
+  border-style: solid;
+}
+
+.title{
+  margin: 0;
+  position: absolute;
+  color: white;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  width: 100%;
+}
+
+.overlay{
+  z-index: 1;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 187px;
+  height: 150px;
+  background-color: transparent;
+  top: 75px;
+}
