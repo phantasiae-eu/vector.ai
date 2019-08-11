@@ -1,26 +1,32 @@
 import React, { ReactElement, useEffect, useState } from 'react'
 import catsData from '../data/cats'
-import axios from 'axios'
+import axios, { AxiosResponse } from 'axios'
 import { key } from '../secretConfig'
 import GridLayout from 'react-grid-layout'
-import { Layout } from './cats.model'
+import { Layout, Links, PlaceHolder } from './cats.model'
 import { Cat } from '../data/cats.model'
 import CatBox from '../cat/cat.component'
 
 const Cats: React.FC = (): ReactElement => {
-    const [links, setLinks] = useState(catsData.map((): string => ''))
+    const [links, setLinks] = useState(
+        catsData.map((): Links => ({ jpeg: '', gif: '' }))
+    )
     useEffect((): void => {
-        const fetchData = async (): Promise<string[]> => {
-            const response = await axios(
+        const fetchData = async (): Promise<Links[]> => {
+            const response: AxiosResponse = await axios(
                 `https://api.giphy.com/v1/gifs/search?q=cat&limit=5&api_key=${key}`
             )
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            return response.data.data.map((data: any): string[] => {
-                console.log(Object.values(data.images).pop())
-                return data.embed_url
-            })
+            return response.data.data.map(
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                (data: any): Links => {
+                    const jpegObj = Object.values(
+                        data.images
+                    ).pop() as PlaceHolder
+                    return { jpeg: jpegObj.url, gif: data.embed_url }
+                }
+            )
         }
-        fetchData().then((data: string[]): void => setLinks(data))
+        fetchData().then((data: Links[]): void => setLinks(data))
     }, [])
     const layout: Layout[] = catsData.map(
         (cat: Cat, index: number): Layout => {
@@ -36,6 +42,9 @@ const Cats: React.FC = (): ReactElement => {
     )
     return (
         <div style={{ width: '100%' }}>
+            <h3 style={{ textIndent: '10px' }}>
+                Double click the cat to open the Lightbox{' '}
+            </h3>
             <GridLayout
                 className="layout"
                 layout={layout}

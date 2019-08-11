@@ -9,14 +9,14 @@ const Cat: React.FC<CatProps> = (props: CatProps): ReactElement => {
     return (
         <React.Fragment>
             <div
-                onClick={(): void => setLightbox(true)}
+                onDoubleClick={(): void => setLightbox(true)}
                 className="cat_wrap"
                 key={props.index.toString()}
             >
                 <p className="title">{props.cat.title}</p>
-                {props.links[props.index] ? (
+                {props.links[props.index].gif ? (
                     <iframe
-                        src={props.links[props.index]}
+                        src={props.links[props.index].gif}
                         width="100%"
                         height="100%"
                         frameBorder="0"
@@ -30,9 +30,7 @@ const Cat: React.FC<CatProps> = (props: CatProps): ReactElement => {
             </div>
             {lightbox && (
                 <Lightbox
-                    mainSrc={
-                        'https://media0.giphy.com/media/CjmvTCZf2U3p09Cn0h/480w_s.jpg?cid=6c0483a8187fdbd0ac0de3c85acb4d59133199a970b60495&rid=480w_s.jpg'
-                    }
+                    mainSrc={props.links[props.index].jpeg}
                     onCloseRequest={(): void => setLightbox(false)}
                 />
             )}
